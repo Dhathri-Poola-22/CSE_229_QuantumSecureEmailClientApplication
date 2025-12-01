@@ -1,128 +1,93 @@
-#####Quantum-Secure Email Client Application#####
+📧 CSE_229 – Quantum-Secure Email Client Application
 
-A Flask-based secure email system that uses Post-Quantum Cryptography (PQC) for key exchange and digital signatures, combined with AES-256-GCM for message encryption.
+A secure email communication system that uses Post-Quantum Cryptography (PQC) and AES-256-GCM to protect messages against classical and quantum computer attacks. This system ensures end-to-end confidentiality, integrity, authentication, and future-proof security.
 
-🚀 Overview
+🎯 Objectives
 
-This project implements an end-to-end encrypted email-like communication platform that is resistant to quantum computer attacks.
-It uses:
+Implement Post-Quantum key exchange using KEM
 
-Post-Quantum KEM (Key Encapsulation) → for shared key agreement
+Implement Post-Quantum digital signatures for message authenticity
 
-Post-Quantum Signatures → for authentication
+Provide encrypted email communication between users
 
-AES-256-GCM → for message confidentiality & integrity
+Secure users’ data with AES-256-GCM symmetric encryption
 
-Flask + SQLite → backend & database
+Allow users to send, receive, view, decrypt, and verify messages
 
-Flask-Login → user authentication session management
+Display and export user public PQC keys
 
-Users can:
-✔ Register & generate PQC keys
-✔ Login securely
-✔ Compose & send encrypted emails
-✔ Verify sender signatures
-✔ View inbox & sent messages
-✔ Download their public keys
+🛠️ Technologies Used
+Category	Tools / Technologies
+Programming Language	Python (Flask Framework)
+Cryptography	PQC (KEM + Signatures), AES-256-GCM
+Libraries	Flask, SQLAlchemy, Flask-Login, python-oqs / qcrypto
+Database	SQLite
+Templates	HTML, CSS (Jinja2)
+IDE	VS Code / PyCharm
+🔐 Security Algorithms Used
 
-🔐 Security Architecture
-1️⃣ Key Generation
+PQC KEM: Used for shared-secret generation
 
-For every new user:
+PQC Digital Signature: Used for message authenticity
 
-PQC KEM key pair (public/private)
+Symmetric Encryption: AES-256-GCM
 
-PQC Signature key pair (public/private)
+Key Derivation: HKDF-SHA256
 
-These are stored Base64-encoded in the database.
+Your system ensures security even against future quantum computers.
 
-2️⃣ Sending a Message
+⚙️ How to Run the Project
+1. Clone the repository
+git clone https://github.com/<your-username>/CSE_229---Quantum-secure-email-client-application.git
 
-When a user sends a message:
+2. Navigate to the project folder
+cd CSE_229---Quantum-secure-email-client-application
 
-Sender fetches the recipient’s KEM public key
-
-Generates:
-
-KEM ciphertext (encapsulation)
-
-Shared secret
-
-Shared secret → HKDF → AES-256-GCM key
-
-Message plaintext → encrypted with AES-GCM
-
-Sender signs:
-
-KEM_ciphertext + nonce + ciphertext + tag
-
-
-Message gets saved into database
-
-3️⃣ Receiving a Message
-
-Recipient decrypts using:
-
-Their KEM private key
-
-AES-256-GCM key derived via HKDF
-
-Verifies the PQ signature
-
-Messages that fail decryption are hidden automatically.
-
-🛠️ Tech Stack
-
-Python 3.11
-
-Flask
-
-SQLite
-
-SQLAlchemy
-
-Flask-Login
-
-Post-Quantum Crypto Library (python-oqs or custom qcrypto)
-
-AES-256-GCM
-
-📂 Project Structure
-app.py
-templates/
-    index.html
-    login.html
-    register.html
-    home.html
-    inbox.html
-    sent.html
-    compose.html
-    message.html
-    keys.html
-static/
-database.sqlite3 (auto-created)
-
-▶️ How to Run the Application
-1. Install Dependencies
+3. Install required dependencies
 pip install -r requirements.txt
 
-2. Set up environment variables
-FLASK_SECRET_KEY=your_secret_key
-
-3. Run the Flask App
+4. Run the Flask application
 python app.py
 
-
-The server runs on:
-
+5. Open in browser
 http://127.0.0.1:5000/
 
-🧪 Features
-Feature	Description
-✔ PQC-Based Key Exchange	KEM (encaps/decaps) for secure key sharing
-✔ PQC Signatures	Digital signatures for message authenticity
-✔ AES-256-GCM Encryption	Confidentiality + integrity
-✔ Secure Login	Password hashing + session management
-✔ Inbox + Sent View	Fully encrypted email-like system
-✔ Message Verification	Signature verification for every message
-✔ Key Download	User can export public keys
+🌟 Features
+
+🔐 User Registration & Login (with hashed passwords)
+
+🔑 Automatic PQC Key Pair Generation
+
+✉️ Encrypted Email Sending
+
+📨 Inbox & Sent Items View
+
+🔏 Digital Signature Verification
+
+🔓 AES-GCM Decryption for authorized users
+
+📄 Public Key Export (JSON)
+
+🗑️ Delete Sent Messages
+
+🧭 Simple UI for sending and receiving secure messages
+
+🌟 Future Enhancements
+
+Real-time message notification system
+
+Multi-user group encrypted messaging
+
+Admin panel for monitoring usage
+
+Mobile-friendly UI
+
+Zero-knowledge cloud backup for PQ keys
+
+👩‍💻 Author
+
+Name: Poola Dhathri ,Nikhitha S, Anke Mounika 
+Department: CSE 
+Batch: CSE_229
+Project: Quantum-Secure Email Client Application
+GitHub: https://github.com/Dhathri-Poola-22
